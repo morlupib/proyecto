@@ -2,6 +2,7 @@
 
 Es una aplicación desarrollada en Laravel PHP Framework para la gestión de cabañas dentro de la provincia de Cordoba Argentina.
 
+
 ## Programas requeridos
 
 -Instalar XAMPP o algún stack MySQL, Apache, y PHP
