@@ -1,9 +1,3 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $propietario->id !!}</p>
-</div>
-
 <!-- Nombre Field -->
 <div class="form-group">
     {!! Form::label('nombre', 'Nombre:') !!}
@@ -27,16 +21,3 @@
     {!! Form::label('telefono', 'Telefono:') !!}
     <p>{!! $propietario->telefono !!}</p>
 </div>
-
-<!-- Created At Field -->
-<div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $propietario->created_at !!}</p>
-</div>
-
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $propietario->updated_at !!}</p>
-</div>
-

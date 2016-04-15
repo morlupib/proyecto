@@ -63,7 +63,7 @@ class propietarioController extends AppBaseController
 
         Flash::success('Datos registrados con éxito');
 
-        return redirect(route('propietarios.index'));
+        return view('home');
     }
 
     /**
@@ -78,9 +78,9 @@ class propietarioController extends AppBaseController
         $propietario = $this->propietarioRepository->findWithoutFail($id);
 
         if (empty($propietario)) {
-            Flash::error('propietario not found');
+            Flash::error('Propietario no existe.');
 
-            return redirect(route('propietarios.index'));
+            return view('home');
         }
 
         return view('propietarios.show')->with('propietario', $propietario);
@@ -98,7 +98,7 @@ class propietarioController extends AppBaseController
         $propietario = $this->propietarioRepository->findWithoutFail($id);
 
         if (empty($propietario)) {
-            Flash::error('propietario not found');
+            Flash::error('Propietario no existe.');
 
             return redirect(route('propietarios.index'));
         }
@@ -119,16 +119,16 @@ class propietarioController extends AppBaseController
         $propietario = $this->propietarioRepository->findWithoutFail($id);
 
         if (empty($propietario)) {
-            Flash::error('propietario not found');
+            Flash::error('Propietario no existe.');
 
             return redirect(route('propietarios.index'));
         }
 
         $propietario = $this->propietarioRepository->update($request->all(), $id);
 
-        Flash::success('propietario updated successfully.');
+        Flash::success('Propietario actualizado');
 
-        return redirect(route('propietarios.index'));
+        return view('propietarios.show')->with('propietario', $propietario);
     }
 
     /**
@@ -143,14 +143,14 @@ class propietarioController extends AppBaseController
         $propietario = $this->propietarioRepository->findWithoutFail($id);
 
         if (empty($propietario)) {
-            Flash::error('propietario not found');
+            Flash::error('Propietario no existe.');
 
             return redirect(route('propietarios.index'));
         }
 
         $this->propietarioRepository->delete($id);
 
-        Flash::success('propietario deleted successfully.');
+        Flash::success('Propietario eliminado.');
 
         return redirect(route('propietarios.index'));
     }

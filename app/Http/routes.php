@@ -32,20 +32,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'API'], function () {
     });
 });
 
-
-/*
-|--------------------------------------------------------------------------
-| API routes
-|--------------------------------------------------------------------------
-*/
-
-Route::group(['prefix' => 'api', 'namespace' => 'API'], function () {
-    Route::group(['prefix' => 'v1'], function () {
-        require config('infyom.laravel_generator.path.api_routes');
-    });
-});
-
-
 Route::resource('propietarios', 'propietarioController');
 Route::get('propietario/create', 'propietarioController@create');
 Route::post('propietario/create', 'propietarioController@store');
+Route::get('propietario/{id}', 'propietarioController@show');

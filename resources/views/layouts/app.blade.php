@@ -65,6 +65,7 @@
                             
                             <ul class="dropdown-menu" role="menu">
                             <li><a href="propietario/create">Registrar datos</a></li>
+                            <li><a href="propietario/{{ Auth::user()->id }}">Ver datos</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Salir</a></li>
                             </ul>
                         </li>
