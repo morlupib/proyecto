@@ -7,12 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Gestor de Cabañas</title>
-
+    
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 
+    <!-- Bootstrap -->
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+    
+    <!-- Google Maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUwju3Kt-yGKCv44W90QtYYo2wUqTqhgg&libraries=places" type="text/javascript"></script>
 
     <style>
         body {
@@ -25,6 +30,10 @@
         }
 
     </style>
+   
+
+        @yield('css')
+
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
@@ -40,16 +49,16 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Mi Cabaña
+                <a class="navbar-brand" href="{{ url('/') }}"><span class="glyphicon glyphicon-home"></span>
+                    myCabin
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
+                <!-- Left Side Of Navbar 
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
-                </ul>
+                </ul>-->
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
@@ -64,9 +73,9 @@
                             </a>
                             
                             <ul class="dropdown-menu" role="menu">
-                            <li><a href="propietario/create">Registrar datos</a></li>
-                            <li><a href="propietario/{{ Auth::user()->id }}">Ver datos</a></li>
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Salir</a></li>
+                            <li><a href="propietario/{{ Auth::user()->id }}">Ver perfil</a></li>
+                            <li><a href="cabanas/create">Registrar cabaña</a></li>
+                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Salir</a></li>
                             </ul>
                         </li>
                     @endif
@@ -81,5 +90,8 @@
     <!-- JavaScripts -->
     <script src="{{ asset('plugins/jquery/jquery-2.2.3.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    
+    @yield('scripts')
+    
 </body>
 </html>

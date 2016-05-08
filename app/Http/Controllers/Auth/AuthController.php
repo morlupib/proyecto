@@ -7,6 +7,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\Models\propietario;
 
 class AuthController extends Controller
 {
@@ -51,7 +52,7 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255|unique:users',
-            'email' => 'required|email|max:255|unique:users',
+            
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -64,11 +65,22 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        $usuario = new User;
+        $usuario->name = $data['name'];
+        $usuario->password= bcrypt($data['password']);
+
+        $propietario= new propietario;
+        $propietario->nombre=$data['nombre'];
+        $propietario->apellido=$data['apellido'];
+        $propietario->telefono=$data['telefono'];
+        $propietario->email = $data['email'];
+
+        $usuario->save();
+
+        $propietario->user()->associate($usuario);
+        $propietario->save();
+
+        return $usuario;
     }
     
 }

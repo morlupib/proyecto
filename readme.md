@@ -24,3 +24,6 @@ Es una aplicación desarrollada en Laravel PHP Framework para la gestión de cab
 	php artisan serve
 
 -Ejecutar la pagina desde http://localhost:8000/
+
+hoola
+asdasdasd

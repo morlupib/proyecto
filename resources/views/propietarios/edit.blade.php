@@ -1,13 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+<style>
+body {background-color: #F2F5A9}
 
-        <div class="row">
-            <div class="col-sm-12">
-                <h1 class="pull-left">Edit propietario</h1>
-            </div>
-        </div>
+</style>
+    <div class="container">
 
         @include('core-templates::common.errors')
 

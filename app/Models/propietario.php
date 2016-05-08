@@ -46,7 +46,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class propietario extends Model
 {
-    use SoftDeletes;
+   use SoftDeletes;
 
     public $table = 'propietarios';
     
@@ -57,9 +57,12 @@ class propietario extends Model
     public $fillable = [
         'nombre',
         'apellido',
-        'mail',
-        'telefono'
+        'telefono',
+        'email',
+        'user_id'
     ];
+
+//protected $hidden= ['user_id'];
 
     /**
      * The attributes that should be casted to native types.
@@ -69,7 +72,7 @@ class propietario extends Model
     protected $casts = [
         'nombre' => 'string',
         'apellido' => 'string',
-        'mail' => 'string',
+        'email'=>'string',
         'telefono' => 'string'
     ];
 
@@ -80,8 +83,15 @@ class propietario extends Model
      */
     public static $rules = [
         'nombre' => 'required|max:255',
-        'apellido' => 'required|max:255',
-        'mail' => 'required|email|max:255',
         'telefono' => 'required|max:255'
     ];
+
+    public function user() {
+        return $this->belongsTo('App\User', 'user_id');
+    }
+
+    public function canabas()
+    {
+        return $this->hasMany('App\Models\cabanas', 'cabana_id');
+    }
 }

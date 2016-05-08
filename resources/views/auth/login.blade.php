@@ -5,10 +5,11 @@
 body {background-color: #F2F5A9}
 
 </style>
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
@@ -29,7 +30,7 @@ body {background-color: #F2F5A9}
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Contraseña</label>
+                            <label class="col-md-4 control-label"><span class="glyphicon glyphicon-lock"></span> Contraseña</label> 
 
                             <div class="col-md-6">
                                 <input type="password" class="form-control" name="password">
@@ -54,7 +55,7 @@ body {background-color: #F2F5A9}
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-success">
                                     <i class="fa fa-btn fa-sign-in"></i>Login
                                 </button>
 
@@ -67,4 +68,5 @@ body {background-color: #F2F5A9}
         </div>
     </div>
 </div>
+
 @endsection

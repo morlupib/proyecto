@@ -13,7 +13,7 @@
 <!-- Mail Field -->
 <div class="form-group">
     {!! Form::label('mail', 'Mail:') !!}
-    <p>{!! $propietario->mail !!}</p>
+    <p>{!! $propietario->email !!}</p>
 </div>
 
 <!-- Telefono Field -->

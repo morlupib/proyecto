@@ -6,21 +6,29 @@ use App\Http\Requests;
 use App\Http\Requests\CreatepropietarioRequest;
 use App\Http\Requests\UpdatepropietarioRequest;
 use App\Repositories\propietarioRepository;
+use App\Repositories\usuarioRepository;
 use Illuminate\Http\Request;
 use Flash;
 use InfyOm\Generator\Controller\AppBaseController;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\User;
 
 class propietarioController extends AppBaseController
 {
     /** @var  propietarioRepository */
     private $propietarioRepository;
+    private $usuarioRepository;
 
     public function __construct(propietarioRepository $propietarioRepo)
     {
         $this->propietarioRepository = $propietarioRepo;
     }
+    public function __constructor(usuarioRepository $usuarioRepo)
+    {
+        $this->usuarioRepository = $usuarioRepo;
+    }
+
 
     /**
      * Display a listing of the propietario.
@@ -31,11 +39,12 @@ class propietarioController extends AppBaseController
     public function index(Request $request)
     {
 
-        $this->propietarioRepository->pushCriteria(new RequestCriteria($request));
+        /**$this->propietarioRepository->pushCriteria(new RequestCriteria($request));
         $propietarios = $this->propietarioRepository->all();
 
         return view('propietarios.index')
-            ->with('propietarios', $propietarios);
+            ->with('propietarios', $propietarios);*/
+            return view ('home');
     }
 
     /**
@@ -76,6 +85,7 @@ class propietarioController extends AppBaseController
     public function show($id)
     {
         $propietario = $this->propietarioRepository->findWithoutFail($id);
+        
 
         if (empty($propietario)) {
             Flash::error('Propietario no existe.');

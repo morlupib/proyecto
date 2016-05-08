@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::auth();
+Route::resource('home','HomeController@index');
 
 Route::get('/home', 'HomeController@index');
 
@@ -36,3 +37,10 @@ Route::resource('propietarios', 'propietarioController');
 Route::get('propietario/create', 'propietarioController@create');
 Route::post('propietario/create', 'propietarioController@store');
 Route::get('propietario/{id}', 'propietarioController@show');
+
+
+Route::resource('cabanas', 'cabanasController');
+Route::get('cabanas/create','cabanasController@create');
+Route::post('cabanas/create','cabanasController@store');
+
+Route::resource('file', 'FileController');

@@ -2,19 +2,19 @@
 
 namespace App\Repositories;
 
-use App\Models\propietario;
+use App\Models\cabanas;
 use InfyOm\Generator\Common\BaseRepository;
 
-class propietarioRepository extends BaseRepository
+class cabanasRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
         'nombre',
-        'apellido',
-        'email',
-        'telefono'
+        'descripcion',
+        'direccion',
+        'precio'
     ];
 
     /**
@@ -22,6 +22,6 @@ class propietarioRepository extends BaseRepository
      **/
     public function model()
     {
-        return propietario::class;
+        return cabanas::class;
     }
 }

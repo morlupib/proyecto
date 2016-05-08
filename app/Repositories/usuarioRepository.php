@@ -2,19 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Models\propietario;
+use App\User;
 use InfyOm\Generator\Common\BaseRepository;
 
-class propietarioRepository extends BaseRepository
+class usuarioRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'nombre',
-        'apellido',
-        'email',
-        'telefono'
+        'name', 'email'
     ];
 
     /**
@@ -22,6 +19,6 @@ class propietarioRepository extends BaseRepository
      **/
     public function model()
     {
-        return propietario::class;
+        return User::class;
     }
 }
