@@ -14,7 +14,7 @@ class CreateImagenesTable extends Migration
     {
         Schema::create('imagenes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('path');
+            $table->string('nombre');
             $table->timestamps();
             $table->softDeletes();
             $table->integer('cabana_id')->unsigned();

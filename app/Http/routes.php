@@ -11,36 +11,27 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 Route::auth();
-Route::resource('home','HomeController@index');
 
-Route::get('/home', 'HomeController@index');
+Route::resource('propietarios', 'propietarioController');
 
+Route::resource('cabanas', 'cabanasController');
+
+Route::get('/publicar/{id}', [
+	'uses' => 'cabanasController@publicar',
+	'as'   => 'publicar'
+
+]);
 
 /*
 |--------------------------------------------------------------------------
 | API routes
 |--------------------------------------------------------------------------
-*/
-
 Route::group(['prefix' => 'api', 'namespace' => 'API'], function () {
     Route::group(['prefix' => 'v1'], function () {
         require config('infyom.laravel_generator.path.api_routes');
     });
 });
-
-Route::resource('propietarios', 'propietarioController');
-Route::get('propietario/create', 'propietarioController@create');
-Route::post('propietario/create', 'propietarioController@store');
-Route::get('propietario/{id}', 'propietarioController@show');
-
-
-Route::resource('cabanas', 'cabanasController');
-Route::get('cabanas/create','cabanasController@create');
-Route::post('cabanas/create','cabanasController@store');
-
-Route::resource('file', 'FileController');
+*/

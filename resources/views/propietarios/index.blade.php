@@ -1,10 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-body {background-color: #F2F5A9}
-
-</style>
 
     <div class="container">
 
@@ -17,11 +13,12 @@ body {background-color: #F2F5A9}
 
         <div class="clearfix"></div>
 
-         @if($propietarios->isEmpty())
+        @if($propietarios->isEmpty())
             <div class="well text-center">No existen propietarios.</div>
         @else
             @include('propietarios.table')
         @endif
         
     </div>
+    
 @endsection

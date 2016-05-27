@@ -83,7 +83,8 @@ class propietario extends Model
      */
     public static $rules = [
         'nombre' => 'required|max:255',
-        'telefono' => 'required|max:255'
+        'telefono' => 'required|max:255',
+        'email' => 'required|max:255'
     ];
 
     public function user() {

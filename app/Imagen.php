@@ -8,7 +8,7 @@ class Imagen extends Model
 {
     protected $table = 'imagenes';
 
-    public $fillable = ['path', 'cabana_id'];
+    public $fillable = ['nombre', 'cabana_id'];
 
     
     public function cabana()

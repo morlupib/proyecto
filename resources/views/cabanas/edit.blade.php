@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container"> 
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="pull-left">Edit cabanas</h1>
+                <h1 class="pull-left">Editar cabaña</h1>
             </div>
         </div>
 
@@ -16,4 +17,5 @@
 
             {!! Form::close() !!}
         </div>
+</div>
 @endsection

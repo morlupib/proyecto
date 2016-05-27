@@ -33,8 +33,7 @@ class cabanasController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->cabanasRepository->pushCriteria(new RequestCriteria($request));
-        $cabanas = $this->cabanasRepository->all();
+        $cabanas = cabanas::where('propietario_id', '=', Auth::user()->propietario->id)->get();
 
         return view('cabanas.index')
             ->with('cabanas', $cabanas);
@@ -60,33 +59,36 @@ class cabanasController extends AppBaseController
     public function store(CreatecabanasRequest $request)
     {
 
-        $propietario = Auth::user()->propietario()->get();
-        $cabana = new cabanas;
-        $cabana->nombre = $request->input('nombre');
-        $cabana->descripcion = $request->input('descripcion');
-        $cabana->precio = $request->input('precio');
-        $cabana->direccion = $request->input('direccion');
-        $cabana->latitud = $request->input('latitud');
-        $cabana->longitud = $request->input('longitud');
+        $propietario = Auth::user()->propietario->id;
 
-        //dd($propietario);
+        $cabana = new cabanas;
+        $cabana->nombre = $request['nombre'];
+        $cabana->descripcion = $request['descripcion'];
+        $cabana->precio = $request['precio'];
+        $cabana->direccion = $request['direccion'];
+
+        if($request['publicar'] == 1){
+            $cabana->publicar = $request['publicar'];
+        }
+        else{
+            $cabana->publicar = 0;
+        }
+        
         $cabana->propietario()->associate($propietario);
         $cabana->save();
             
-        if ($request->hasFile('file')) {
+        if ($request->hasFile('image')) {
 
-            $path = public_path().'/images/';
-            $files = $request->file('file');
+            $path = public_path().'/imagenes/';
+            $files = $request->file('image');
 
             foreach($files as $file){
 
                 $fileName = uniqid().$file->getClientOriginalName();
                 $file->move($path, $fileName);
-                
-                $pathName = $path.$fileName;
 
                 $imagen = new Imagen;
-                $imagen->path = $pathName;
+                $imagen->nombre = $fileName;
 
                 $imagen->cabana()->associate($cabana);
                 $imagen->save();
@@ -94,7 +96,7 @@ class cabanasController extends AppBaseController
             }     
         }
 
-        Flash::success('Cabaña guardada con exito.');
+        Flash::success('Cabaña guardada con éxito.');
 
         return redirect(route('cabanas.index'));
     }
@@ -115,7 +117,7 @@ class cabanasController extends AppBaseController
         $cabanas = $this->cabanasRepository->findWithoutFail($id);
 
         if (empty($cabanas)) {
-            Flash::error('cabanas not found');
+            Flash::error('Cabaña no encontrada');
 
             return redirect(route('cabanas.index'));
         }
@@ -135,7 +137,7 @@ class cabanasController extends AppBaseController
         $cabanas = $this->cabanasRepository->findWithoutFail($id);
 
         if (empty($cabanas)) {
-            Flash::error('cabanas not found');
+            Flash::error('Cabaña no encontrada');
 
             return redirect(route('cabanas.index'));
         }
@@ -156,14 +158,14 @@ class cabanasController extends AppBaseController
         $cabanas = $this->cabanasRepository->findWithoutFail($id);
 
         if (empty($cabanas)) {
-            Flash::error('cabanas not found');
+            Flash::error('Cabaña no encontrada');
 
             return redirect(route('cabanas.index'));
         }
 
         $cabanas = $this->cabanasRepository->update($request->all(), $id);
 
-        Flash::success('cabanas updated successfully.');
+        Flash::success('Cabaña actualizada con éxito.');
 
         return redirect(route('cabanas.index'));
     }
@@ -180,15 +182,44 @@ class cabanasController extends AppBaseController
         $cabanas = $this->cabanasRepository->findWithoutFail($id);
 
         if (empty($cabanas)) {
-            Flash::error('cabanas not found');
+            Flash::error('Cabaña no encontrada');
 
             return redirect(route('cabanas.index'));
         }
 
         $this->cabanasRepository->delete($id);
 
-        Flash::success('cabanas deleted successfully.');
+        Flash::success('Cabaña eliminada.');
 
         return redirect(route('cabanas.index'));
+    }
+
+    public function publicar($id)
+    {
+        $cabana = $this->cabanasRepository->findWithoutFail($id);
+
+        if ($cabana->publicar == 1) {
+            $cabana->publicar=0;
+        }else{
+            $cabana->publicar=1;
+        }
+
+        $cabana->save();
+
+        return redirect(route('cabanas.index'));
+        /*
+        $cabana = cabanas::find($request['cabId']);
+
+        if($request['public'] == true){
+            $cabana->publicar = 1;
+        }
+        else{
+            $cabana->publicar = 0;
+        }
+       
+        $cabana->update();
+
+        return Response::json('ok', 200);
+        */
     }
 }

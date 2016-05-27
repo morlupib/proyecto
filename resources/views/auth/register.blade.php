@@ -2,11 +2,6 @@
 
 @section('content')
 
-<style>
-body {background-color: #F2F5A9}
-
-</style>
-</head>
 <body>
 <div class="container">
     <div class="row">
@@ -24,22 +19,35 @@ body {background-color: #F2F5A9}
                             {!! Form::label('apellido', 'Apellido:') !!} 
                             {!! Form::text('apellido', null, ['class' => 'form-control']) !!} 
                         </div>  
-                        <div class="form-group-sm-6"> 
+                        <div class="form-group-sm-6{{ $errors->has('telefono') ? ' has-error' : '' }}"> 
                             <span class="form-group-addon"> 
                                 <span class="glyphicon glyphicon-earphone"></span> 
                             </span> 
                                 {!! Form::label('telefono', 'Teléfono:') !!} 
-                                {!! Form::number('telefono', null, ['class' => 'form-control']) !!} 
+                                {!! Form::number('telefono', null, ['class' => 'form-control']) !!}
+                            @if ($errors->has('telefono'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('telefono') }}</strong>
+                                </span>
+                            @endif
+                        </div>  
+                        <div class="form-group-sm-6{{ $errors->has('email') ? ' has-error' : '' }}">  
                             <span class="form-group-addon"> 
                                 <span class="glyphicon glyphicon-envelope"></span> 
                             </span> 
-                             
-                            {!! Form::label('email', 'E-mail:') !!} 
-                            {!! Form::email('email', null, ['class' => 'form-control']) !!}         
-                        </div>  
+                                {!! Form::label('email', 'E-mail:') !!} 
+                                {!! Form::email('email', null, ['class' => 'form-control']) !!}
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif       
+                        </div>
+
                         <div class="form-group-sm-8"> 
                             <div class="panel panel-info"> 
                             <div class="panel-heading"> <span class="glyphicon glyphicon-user"></span> Usuario</div> 
+
                         <div class="panel-body"> 
 
 
@@ -86,9 +94,6 @@ body {background-color: #F2F5A9}
 </div>
 </div>
 </div>
-
-
-                        
 
                         <div class="form-group">
                             <div class="col-md-offset-4"> 

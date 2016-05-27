@@ -17,7 +17,7 @@ class UpdatepropietarioRequest extends Request
     {
         return true;
     }
-
+ 
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,6 +25,28 @@ class UpdatepropietarioRequest extends Request
      */
     public function rules()
     {
-        return propietario::$rules;
+        return [
+            'nombre' => 'required|max:255',
+            'telefono' => 'required|max:255',
+            'email' => 'required|max:255',
+            'old_password' => 'required|min:6|current_password',
+            'password' => 'required|min:6',
+            'password_again' => 'required|min:6|same:password'
+        ];
+    }
+ 
+    public function messages()
+    {
+        return [];
+    }
+ 
+    /**
+     * Get the sanitized input for the request.
+     *
+     * @return array
+     */
+    public function sanitize()
+    {
+        return $this->only('clave');
     }
 }

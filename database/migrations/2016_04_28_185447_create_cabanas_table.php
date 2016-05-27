@@ -18,8 +18,7 @@ class CreateCabanasTable extends Migration
             $table->mediumtext('descripcion');
             $table->float('precio');
             $table->string('direccion');
-            $table->double('latitud');
-            $table->double('longitud');
+            $table->boolean('publicar');
             $table->timestamps();
             $table->softDeletes();
             

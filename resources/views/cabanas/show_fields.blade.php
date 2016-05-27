@@ -1,9 +1,3 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $cabanas->id !!}</p>
-</div>
-
 <!-- Nombre Field -->
 <div class="form-group">
     {!! Form::label('nombre', 'Nombre:') !!}
@@ -22,33 +16,18 @@
     <p>{!! $cabanas->direccion !!}</p>
 </div>
 
-<!-- Latitud Field -->
-<div class="form-group">
-    {!! Form::label('latitud', 'Latitud:') !!}
-    <p>{!! $cabanas->latitud !!}</p>
-</div>
-
-<!-- Longitud Field -->
-<div class="form-group">
-    {!! Form::label('longitud', 'Longitud:') !!}
-    <p>{!! $cabanas->longitud !!}</p>
-</div>
-
 <!-- Precio Field -->
 <div class="form-group">
-    {!! Form::label('precio', 'Precio:') !!}
+    {!! Form::label('precio $', 'Precio:') !!}
     <p>{!! $cabanas->precio !!}</p>
 </div>
 
-<!-- Created At Field -->
+<!-- Imagenes -->
 <div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $cabanas->created_at !!}</p>
+    {!! Form::label('imagenes', 'Imagenes:') !!}
+    @foreach($cabanas->imagen as $imagen)
+        <img src="{{ asset('imagenes/'.$imagen->nombre) }}" width="178" height="180">
+    @endforeach
 </div>
 
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $cabanas->updated_at !!}</p>
-</div>
 

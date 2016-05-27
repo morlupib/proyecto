@@ -11,6 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        //rellenar la base de datos. ejecutar con php artisan migrate --seed
+        $usuario = factory('App\User', 1)->create();
+        $propietario = factory('App\Models\propietario', 1)->create();
+        $cabana = factory('App\Models\cabanas', 1)->create();
+       
+        
     }
 }

@@ -136,6 +136,10 @@ class propietarioController extends AppBaseController
 
         $propietario = $this->propietarioRepository->update($request->all(), $id);
 
+        $usuario = \Auth::user();
+        $usuario->password = bcrypt($request['password']);
+        $usuario->save();
+
         Flash::success('Propietario actualizado');
 
         return view('propietarios.show')->with('propietario', $propietario);

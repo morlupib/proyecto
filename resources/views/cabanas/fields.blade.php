@@ -13,53 +13,38 @@
 <!-- Precio Field -->
 <div class="form-group col-sm-4"> 
     {!! Form::label('precio', 'Precio por día:') !!}
-    {!! Form::number('precio', null, ['class' => 'form-control']) !!}
+    {!! Form::number('precio', null, ['class' => 'form-control', 'step' => 'any']) !!}
 </div>
 
 <!-- Direccion Field -->
 <div class="form-group col-sm-10"> 
-    <label for="">Direccion</label> 
-    <input class="form-control" type="text" id="direccion"></input> 
-
-    <div id="map-canvas"></div> 
+    {!! Form::label('direccion', 'Direccion:') !!}
+    {!! Form::text('direccion', null, ['class' => 'form-control']) !!}
 </div> 
 
-
-<!-- Latitud Field -->
-<div class="form-group col-sm-4">
-    <label for="">Latitud</label> 
-    <input type="text" class="form-control" id="latitud" name="latitud"> 
-</div>
-
-<!-- Longitud Field -->
-<div class="form-group col-sm-4">
-    <label for="">Longitud</label> 
-    <input type="text" class="form-control" id="longitud" name="longitud"> 
-</div>
-
 <!-- Imagenes Field -->
-<!--{!! Form::open(['files'=>'true','id' => 'my-dropzone','class' => 'dropzone']) !!}-->
 <div class="form-group col-sm-10">  
     <div class="panel panel-info"> 
         <div class="panel-heading">
-             <span class="glyphicon glyphicon-picture"></span>
+            <span class="glyphicon glyphicon-picture"></span> Imagenes
         </div>
         <div class="panel-body" >            
-            <div class="dz-message" style="height:200px;">
-                Mueva sus imagenes aquí
-            </div>
-            <div class="dropzone-previews"></div>
+            <input type="file" name="image[]" multiple></input>
         </div>
     </div>
 </div>
-<!--{!! Form::close() !!}-->
+
+<!-- Publicar Field -->
+<div class="form-group col-sm-10"> 
+    {!! Form::label('publicar', 'Publicar:') !!}
+    {!! Form::checkbox('publicar', 1, null) !!}
+</div> 
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12"> 
-        <button type="submit" class="btn btn-success"> 
-                        <span class="glyphicon glyphicon-ok"></span> Guardar 
-        </button>                     
-            <!-- {!!  Form::submit('Guardar', ['class' => 'btn btn-success']) !!}-->
-             <a href="{{ url('/') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
+    <button type="submit" class="btn btn-success"> 
+        <span class="glyphicon glyphicon-ok"></span> Guardar 
+    </button>                     
+    <a href="{{ url('/') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
 </div>
 

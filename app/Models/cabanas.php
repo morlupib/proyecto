@@ -79,6 +79,7 @@ class cabanas extends Model
         'latitud',
         'longitud',
         'precio',
+        'publicar',
         'propietario_id'
     ];
 
@@ -91,9 +92,8 @@ class cabanas extends Model
         'nombre' => 'string',
         'descripcion' => 'string',
         'direccion' => 'string',
-        'latitud' => 'integer',
-        'longitud' => 'integer',
-        'precio' => 'float'
+        'precio' => 'float',
+        'publicar' => 'boolean'
     ];
 
     /**
@@ -104,13 +104,13 @@ class cabanas extends Model
     public static $rules = [
         'nombre' => 'required',
         'descripcion' => 'required',
-        //'direccion' => 'required',
+        'direccion' => 'required',
         'precio' => 'required'
     ];
 
     public function imagen()
     {
-        return $this->hasMany('App\Imagen');
+        return $this->hasMany('App\Imagen', 'cabana_id');
     }
 
     public function propietario()

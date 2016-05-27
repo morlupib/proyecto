@@ -13,24 +13,14 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 
     <!-- Bootstrap -->
-    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     
     <!-- Google Maps -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUwju3Kt-yGKCv44W90QtYYo2wUqTqhgg&libraries=places" type="text/javascript"></script>
 
-    <style>
-        body {
-            font-family: 'Lato';
 
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-
-    </style>
-   
+   <!--Fondo y Letra -->
+   <link href="{{ asset ('css/layout.css') }}" rel="stylesheet">
 
         @yield('css')
 
@@ -49,8 +39,8 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}"><span class="glyphicon glyphicon-home"></span>
-                    myCabin
+                <a class="navbar-brand" href="{{ url('/') }}"><span class="glyphicon glyphicon-home"></span>myCabin
+                    
                 </a>
             </div>
 
@@ -73,8 +63,9 @@
                             </a>
                             
                             <ul class="dropdown-menu" role="menu">
-                            <li><a href="propietario/{{ Auth::user()->id }}">Ver perfil</a></li>
-                            <li><a href="cabanas/create">Registrar cabaña</a></li>
+                            <li><a href="{{ url('/propietarios/'.Auth::user()->propietario->id) }}">Ver perfil</a></li>
+                            <li><a href="{{ url('/cabanas/create') }}">Registrar cabaña</a></li>
+                            <li><a href="{{ url('/cabanas/') }}">Mostrar cabañas</a></li>
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Salir</a></li>
                             </ul>
                         </li>
@@ -90,7 +81,8 @@
     <!-- JavaScripts -->
     <script src="{{ asset('plugins/jquery/jquery-2.2.3.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-    
+    <script src="{{ asset('js/ajax.js') }}"></script>
+
     @yield('scripts')
     
 </body>
