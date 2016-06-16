@@ -1,0 +1,25 @@
+MyCabin - v1.0
+
+Nota de Release v1.0
+
+Funcionalidades:
+
+- Login de Usuario
+- Registrar Propietario
+- Actualizar Propietario
+- Mostrar datos Propietario
+- Registrar Cabaña
+- Publicar Cabaña
+- Consultar Cabañas publicadas
+
+Defectos:
+
+- Falta la incorporacion de google maps dentro de la registracion de la cabaña.
+
+Pruebas:
+
+*   7 casos de prueba realizados 
+*   7 casos de prueba con exito
+*   0 casos de prueba con falla
+
+*   100%  de los casos de prueba exitosos
